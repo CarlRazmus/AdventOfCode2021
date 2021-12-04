@@ -1,15 +1,5 @@
 import operator
 
-def part1():
-    gamma_rate = ""
-    epsilon = ""
-    input_matrix = [[int(n) for n in l] for l in [line.strip() for line in open("input.txt")]]
-    flipped_input_matrix = [list(i) for i in zip(*input_matrix)]
-    for l in flipped_input_matrix:
-        gamma_rate += str(getMostOrLeastCommonNr(l, operator.gt))
-        epsilon += str(getMostOrLeastCommonNr(l, operator.lt))
-    print(int(str(gamma_rate), 2) * int(str(epsilon), 2))
-
 def getMostOrLeastCommonNr(l, op):
     return 0 if op(l.count(0), l.count(1)) else 1
 
@@ -20,6 +10,13 @@ def calc_rating(input_matrix, op, idx):
     most_or_least_common_nr = getMostOrLeastCommonNr(flipped_input_matrix[idx], op)
     new_matrix = [l for l in input_matrix if most_or_least_common_nr == l[idx]]
     return calc_rating(new_matrix, op, idx + 1)
+
+def part1():
+    input_matrix = [[int(n) for n in l] for l in [line.strip() for line in open("input.txt")]]
+    flipped_input_matrix = [list(i) for i in zip(*input_matrix)]
+    gamma_rate = "".join([str(getMostOrLeastCommonNr(l, operator.gt)) for l in flipped_input_matrix])
+    epsilon = "".join([str(getMostOrLeastCommonNr(l, operator.lt)) for l in flipped_input_matrix])
+    print(int(str(gamma_rate), 2) * int(str(epsilon), 2))
 
 def part2():
     input_matrix = [[int(n) for n in l] for l in [line.strip() for line in open("input.txt")]]
