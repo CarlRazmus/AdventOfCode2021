@@ -1,4 +1,4 @@
-def part1(command, position):
+def part_1(command, position):
     if command[0] == "up":
         position[1] -= command[1]
     elif command[0] == "down":
@@ -6,7 +6,7 @@ def part1(command, position):
     elif command[0] == "forward":
         position[0] += command[1]
 
-def part2(command, position):
+def part_2(command, position):
     if command[0] == "up":
         position[2] -= command[1]
     elif command[0] == "down":
@@ -15,13 +15,13 @@ def part2(command, position):
         position[0] += command[1]
         position[1] += command[1] * position[2]
 
-def solve(commands, position, func):
+def solve(position, func):
     for command in commands:
         func(command, position)
     print(position[0] * position[1])
 
 if __name__ == "__main__":
-    lines = open("input.txt")
+    lines = open("input_2.txt")
     commands = [[c[0], int(c[1])] for c in [l.strip().split(" ") for l in lines]]
-    solve(commands, [0, 0], part1)  #1648020
-    solve(commands, [0, 0, 0], part2)  #1759818555
+    solve([0, 0], part_1)
+    solve([0, 0, 0], part_2)
