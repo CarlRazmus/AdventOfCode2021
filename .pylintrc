@@ -1,0 +1,3 @@
+[MASTER]
+
+disable=missing-docstring,empty-docstring,invalid-name,line-too-long
